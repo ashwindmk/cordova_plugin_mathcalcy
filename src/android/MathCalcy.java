@@ -2,6 +2,7 @@ package cordova.plugin.mathcalcy;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +40,9 @@ public class MathCalcy extends CordovaPlugin {
             try {
                 int p1 = Integer.parseInt(args.getJSONObject(0).getString("param1"));
                 int p2 = Integer.parseInt(args.getJSONObject(0).getString("param2"));
-                callbackContext.success("" + (p1 + p2));
+                String result = String.valueOf(p1 + p2);
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
+                //callbackContext.success("" + (p1 + p2));
             } catch (Exception e) {
                 callbackContext.error("Exception: " + e);
             }
